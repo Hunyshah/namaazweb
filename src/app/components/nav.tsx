@@ -1,12 +1,18 @@
+'use client';
 import React from 'react'
+import Clock from './clock'
 
 type Props = {}
 
 const NavBar = (props: Props) => {
+  
+  const datehijri = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {day: 'numeric', month: 'long',weekday: 'long',year : 'numeric'}).format(Date.now());
+
+
   return (
     <div className='flex justify-around items-center bg-slate-900 text-white  '>
        <div className='flex justify-evenly items-center'>
-        <div className=' text-4xl text-gray-200 '>4 Dhull Hijjah 144  </div>
+        <div className=' text-2xl text-gray-200 '>{datehijri} </div>
         
         </div>
         <span className='block bg-slate-50 h-24 w-1'></span>
@@ -15,7 +21,7 @@ const NavBar = (props: Props) => {
                 <h3 className='text-6xl text-red-600'>04: 35 </h3>
                 <h5 className='text-4xl text-gray-200'>Until</h5>
             </div>
-            <div className='text-8xl mx-12'>02:09</div>
+            <div className='text-6xl mx-12 min-w-[320px]'><Clock/></div>
             <div className='flex flex-col items-center'>
                 <div className='text-4xl text-green-600' >
                 09
