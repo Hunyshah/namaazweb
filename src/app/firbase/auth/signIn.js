@@ -9,6 +9,7 @@ export default async function signIn(email, password) {
         error = null;
     try {
         result = await signInWithEmailAndPassword(auth, mEmail, password);
+        localStorage.setItem('email',mEmail)
         
     } catch (e) {
         error = e;

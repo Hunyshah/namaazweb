@@ -1,6 +1,5 @@
 import firebase_app from "../firbase/firebaseConfig";
 import { getFirestore, doc, getDoc, collectionGroup, query, where, getDocs } from "firebase/firestore";
-import userSingleton from '../firbase/useSingelten'
 const db = getFirestore(firebase_app)
 export default async function getDoument( email) {
      
@@ -12,20 +11,18 @@ export default async function getDoument( email) {
     //  if(querySnapshot.exists){
     //     console.log(querySnapshot.toString());
     //  }
-    let results = [];
-    let error = null;
-
-    querySnapshot.forEach((doc) => {
-        // results.push({ id: doc.id, ...doc.data() });
-        console.log(doc.data())
-        // userSingleton.setUser(doc.data())
-      });
-    try {
-        results = await getDoc(docRef);
-        console.log(results)
-    } catch (e) {
-        error = e;
-    }
-
-    return { results, error };
+    let data = querySnapshot.docs[0];
+    console.log(`Data = ${JSON.stringify(data)}`);
+    return data;
+    // querySnapshot.forEach((doc) => {
+    //     // results.push({ id: doc.id, ...doc.data() });
+    //     console.log(doc.data())
+    //     // userSingleton.setUser(doc.data())
+    //   });
+    // try {
+    //     results = await getDoc(docRef);
+    //     console.log(results)
+    // } catch (e) {
+    //     error = e;
+    // }
 }
