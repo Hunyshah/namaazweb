@@ -12,6 +12,7 @@ function Page() {
         event.preventDefault()
 
         const { result, error } = await signIn(email, password);
+        localStorage.setItem("d",'dd')
         
         if (error) {
             return console.log(error)
