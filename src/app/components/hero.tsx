@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-
+import Image from 'next/image';
+// import {} from '@/app/components'
 type Props = {
   jammattime: any[]; // Update the type of jammattime as per your data structure
 };
 
 const HeroSection: React.FC<Props> = ({ jammattime }) => {
   const [light, setLight] = useState(false);
-
+  
   // Function to convert time in '12:28 pm' format to 24-hour format
   //function to convert time in '12:28 pm' format to 24-hour format
   function convertTo24Hour(time12h: string) {
@@ -68,7 +69,7 @@ const HeroSection: React.FC<Props> = ({ jammattime }) => {
     // Create an interval to update the state every 1 minute
     const intervalId = setInterval(() => {
       setLight(isLightOnNow());
-    }, 60000); // 1 minute interval (adjust as needed)
+    }, 1000); // 1 minute interval (adjust as needed)
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
@@ -77,21 +78,20 @@ const HeroSection: React.FC<Props> = ({ jammattime }) => {
   return (
     <div className='bg-slate-950 text-white pt-14 pb-5'>
       <div className='1stparent flex justify-evenly items-center'>
-        {light ? <h1 className='text-white bg-red-700'>Light is on</h1> : null}
-
         {jammattime?.map((item: any) => {
+          const isHighlighted = compareTimes(item.data().TimeIn, item.data().JamatTime) && light;
           return (
-            <div key={item.id} className='2ndParent flex flex-col items-center'>
-              <div className='border-8 border-slate-800 rounded-lg'>
-                <div className='border-8 border-white rounded-lg py-4 px-2 flex flex-col items-center'>
-                  <div className='text-3xl mb-7'>{item.id}</div>
+            <div key={item.id} className={`2ndParent flex flex-col items-center ${isHighlighted ? 'highlighted' : ''}`}>
+              
+              <div className={`border-8 border-slate-800 rounded-lg`}>
+                <div className={`border-8 ${isHighlighted ? ('border-green-400'):null} 'border-white'  rounded-lg py-4 px-2 flex flex-col items-center`}>
+                {/* {isHighlighted ? (
+                
+                // <Image className='bg-transparent' src='/images/lightgs.png' alt='no pic' width={25} height={25} />
+              ) : null} */}
+                  <div className='text-3xl mb-7'>    {item.id}</div>
                   <div className='text-3xl text-red-600'>{item.data().JamatTime}</div>
-                  <div className='text-3xl'>JAMAT</div>
-                  {light ? (
-                    <h1 className='text-white bg-red-700'>Light is on</h1>
-                  ) : (
-                    <h1 className='text-white bg-red-700'>Light is off</h1>
-                  )}
+                  <div className='text-3xl'> JAMAT</div>
                 </div>
               </div>
               <div className='border-2 border-green-600 my-2 rounded-xl px-5'>

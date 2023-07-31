@@ -17,11 +17,17 @@ import Herofooter from "../components/herofooter";
             console.log("Phone retrevied = "+phone);
             let allDocs:any = await getDoument(phone)
             setJammatTime(allDocs)
-             console.log( allDocs[0].data())
+             
             // return (<h1>Only logged in users can view this page</h1>);
             } 
-            getJammatdata()
-        if (user == null) router.push("/")
+            const intervalId = setInterval(() => {
+                getJammatdata()
+              }, 1000);
+              if (user == null) router.push("/")  
+              // Cleanup function to clear the interval when the component unmounts
+              return () => clearInterval(intervalId);
+            
+        
     }, [user])
     // async function getJammatdata(){
     // let phone = localStorage.getItem("PHONE");
