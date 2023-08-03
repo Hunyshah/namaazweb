@@ -20,13 +20,13 @@ import Herofooter from "../components/herofooter";
              
             // return (<h1>Only logged in users can view this page</h1>);
             } 
-            const intervalId = setInterval(() => {
-                getJammatdata()
-              }, 1000);
-              if (user == null) router.push("/")  
-              // Cleanup function to clear the interval when the component unmounts
-              return () => clearInterval(intervalId);
-            
+            // const intervalId = setInterval(() => {
+            //     getJammatdata()
+            //   }, 60000);
+            //   if (user == null) router.push("/")  
+            //   // Cleanup function to clear the interval when the component unmounts
+            //   return () => clearInterval(intervalId);
+            getJammatdata()
         
     }, [user])
     // async function getJammatdata(){
@@ -38,10 +38,11 @@ import Herofooter from "../components/herofooter";
     // }
     return (
         <>
+        
         <NavBar/>
         <HeroSection jammattime={jammatTime}/>
         <Herofooter/>
-        </>
+                </>
     )
 }
 
