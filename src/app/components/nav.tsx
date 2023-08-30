@@ -25,21 +25,21 @@ const NavBar = (props: Props) => {
   
 
   return (
-    <div className='flex justify-around items-center bg-slate-900 text-white  '>
-       <div className='flex justify-evenly items-center'>
-        <div className=' text-3xl text-gray-200 w-96 font-bold'>{datehijri} </div>
+    <div className='flex justify-between items-center bg-slate-900 text-white w-[100vw]  '>
+       <div className='flex justify-evenly items-center '>
+        <div className=' text-3xl text-gray-200 w-[25vw] font-bold'>{datehijri} </div>
         
         </div>
         <div className=' bg-slate-50 h-24 w-1'></div>
         {/* <div className='flex justify-between items-center '> */}
-            <div className='flex flex-col items-center '>
+            <div className='flex flex-col items-center w-[18vw]'>
                 <h3 className='text-6xl text-red-600'>04: 35 </h3>
                 <h5 className='text-4xl text-gray-200'>Until</h5>
                 </div>        
             {/* </div> */}
     
         <span className='block bg-slate-50 h-24 w-1'></span>
-            <div className='text-5xl font-mono  min-w-[320px]'><Clock/></div>
+            <div className='text-5xl font-mono  min-w-[320px] '><Clock/></div>
             
         <span className='block bg-slate-50 h-24 w-1'></span>
         <div className='flex justify-between items-center'>
@@ -54,7 +54,7 @@ const NavBar = (props: Props) => {
         
 
         <span className='block bg-slate-50 h-24 w-1'></span>
-        <div className='text-4xl w-96 font-bold'> {formattedDate}</div>
+        <div className='text-3xl w-[25vw] font-bold'> {formattedDate}</div>
     </div>
   )
 }

@@ -15,7 +15,7 @@ function Clock() {
   }, []);
 
   return (
-    <><div className='max-w-[300px]'>
+    <><div className='max-w-[22vw]'>
       {currentTime && <p>{currentTime}</p>}
       </div>
     </>
