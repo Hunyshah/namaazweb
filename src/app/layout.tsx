@@ -19,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${Roboto} h-screen bg-slate-950 `}><AuthContextProvider>{children}</AuthContextProvider></body>
+      <body className={`h-screen bg-slate-950 `}><AuthContextProvider>{children}</AuthContextProvider></body>
     </html>
   )
 }

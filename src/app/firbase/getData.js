@@ -1,5 +1,5 @@
 import firebase_app from "../firbase/firebaseConfig";
-import { getFirestore, doc, getDoc, collectionGroup, query, where, getDocs, collection } from "firebase/firestore";
+import { getFirestore, doc, getDoc, collectionGroup,orderBy, query, where, getDocs, collection } from "firebase/firestore";
 const db = getFirestore(firebase_app);
 
 export default async function getDocument(email) {
@@ -14,7 +14,9 @@ export default async function getDocument(email) {
   let docRef = doc(db,`Mosque/${data.mosqueId}/`)
   let docSnap = await getDoc(docRef);
   let cRef = collection(docSnap.ref,'Prayers');
-  let pSnap = await getDocs(cRef);
+  const namazOrderQuery = query(cRef,orderBy('ID','desc'))
+  let pSnap = await getDocs(namazOrderQuery);
+
    
   console.log(pSnap.docs.length+"   yeh length he");
    return pSnap.docs;

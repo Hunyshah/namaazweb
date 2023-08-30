@@ -33,7 +33,7 @@ const NavBar = (props: Props) => {
         <div className=' bg-slate-50 h-24 w-1'></div>
         {/* <div className='flex justify-between items-center '> */}
             <div className='flex flex-col items-center w-[14vw]'>
-                <h3 className='text-6xl text-red-600'>04: 35 </h3>
+                <h3 className='text-6xl text-red-600'>____</h3>
                 <h5 className='text-4xl text-gray-200'>Until</h5>
                 </div>        
             {/* </div> */}
@@ -45,7 +45,7 @@ const NavBar = (props: Props) => {
         <div className='flex justify-between items-center'>
             <div className='flex flex-col items-center'>
                 <div className='text-4xl text-green-600' >
-                09
+                ____
             </div>
             <div className='text-4xl text-gray-200'>
             Remaing Time
