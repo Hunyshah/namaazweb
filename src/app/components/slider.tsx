@@ -1,23 +1,60 @@
-import { Carousel } from "@material-tailwind/react";
+'use client'
+
+import Image from "next/image";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+
+const imageList = [
+    { id:'e1',
+image: '/images/slider1.jpeg'},
+{
+    id:'e2',
+    image:'/images/slider2.jpeg'
+},
+{
+    id:'e3',
+    image:'/images/slider3.jpeg'
+},
+{
+    id:'e4',
+    image:'/images/slider4.jpeg'
+},
+]
  
-export default function CarouselDefault() {
+const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1
+    }
+  };
+export  function SliderDefault() {
   return (
-    <Carousel className="rounded-xl">
-      <img
-        src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2560&q=80"
-        alt="image 1"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2940&q=80"
-        alt="image 2"
-        className="h-full w-full object-cover"
-      />
-      <img
-        src="https://images.unsplash.com/photo-1518623489648-a173ef7824f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2762&q=80"
-        alt="image 3"
-        className="h-full w-full object-cover"
-      />
-    </Carousel>
+    <div className="bg-white">
+    <Carousel   responsive={responsive}  swipeable={false}
+  draggable={false}
+  showDots={true} autoPlay={true} autoPlaySpeed={1000}   customTransition="all .5"
+  transitionDuration={500}
+  containerClass="carousel-container">
+  {imageList.map((item,index)=>{
+return <div  key={index}>
+    <Image src={item.image} alt={item.id} width={300}height={200}/>
+    
+</div>
+  })}
+</Carousel>
+</div>
   );
 }

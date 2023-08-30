@@ -1,7 +1,9 @@
 import './globals.css'
 import type { Metadata } from 'next'
+// import 'react-multi-carousel/lib/styles.css';
 import { Inter } from 'next/font/google'
 import {AuthContextProvider} from './components/context/authContext'
+import {Roboto} from '@next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,7 +19,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className='h-screen bg-slate-950'><AuthContextProvider>{children}</AuthContextProvider></body>
+      <body className={`${Roboto} h-screen bg-slate-950 `}><AuthContextProvider>{children}</AuthContextProvider></body>
     </html>
   )
 }

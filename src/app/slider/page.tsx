@@ -6,18 +6,18 @@ import "react-multi-carousel/lib/styles.css";
 
 const imageList = [
     { id:'e1',
-image: 'https://images.unsplash.com/photo-1593591141073-615d455c4b4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80'},
+image: '/images/slider1.jpeg'},
 {
     id:'e2',
-    image:'https://images.unsplash.com/photo-1593591141073-615d455c4b4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80'
+    image:'/images/slider2.jpeg'
 },
 {
     id:'e3',
-    image:'https://images.unsplash.com/photo-1593591141073-615d455c4b4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80'
+    image:'/images/slider3.jpeg'
 },
 {
     id:'e4',
-    image:'https://images.unsplash.com/photo-1593591141073-615d455c4b4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1527&q=80'
+    image:'/images/slider4.jpeg'
 },
 ]
  
@@ -42,11 +42,16 @@ const responsive = {
   };
 export default function CarouselDefault() {
   return (
-    <div className="bg-white">
-    <Carousel infinite={true} responsive={responsive} swipeable={true} autoPlay={true} autoPlaySpeed={1000}>
+    <div>
+    <Carousel  ssr={true}  responsive={responsive}  swipeable={false}
+  draggable={false}
+  showDots={true} autoPlay={true} autoPlaySpeed={1000}   customTransition="all .5"
+  transitionDuration={500}
+  containerClass="carousel-container">
   {imageList.map((item,index)=>{
-return <div key={index}>
+return <div  key={index}>
     <Image src={item.image} alt={item.id} width={300}height={200}/>
+    
 </div>
   })}
 </Carousel>
