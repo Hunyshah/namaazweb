@@ -3,6 +3,9 @@
 // import firebase from 'firebase/app';
 // import 'firebase/auth';
 import { initializeApp, getApps } from "firebase/app";
+import "firebase/messaging";
+
+
 export const firebaseConfig = {
     apiKey: "AIzaSyBqTv2U83TbCf6ylw9U2_p0v0pvvdn7oaA",
   authDomain: "prayer-times-9dc39.firebaseapp.com",
@@ -17,6 +20,17 @@ export const firebaseConfig = {
 // Initialize Firebase
 let firebase_app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
 
+// if ("serviceWorker" in navigator) {
+//   navigator.serviceWorker
+//     .register("/firebase-messaging-sw.js") // Path to your service worker file
+//     .then((registration) => {
+//       firebase.messaging().useServiceWorker(registration);
+//     })
+//     .catch((err) => {
+//       console.error("Service worker registration failed", err);
+//     });
+// }
+// export const messaging = getMessaging(firebase_app);
 export default firebase_app;
 
 // if (!firebase.apps.length) {

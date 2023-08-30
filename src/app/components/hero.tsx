@@ -69,7 +69,7 @@ const HeroSection: React.FC<Props> = ({ jammattime }) => {
     // Create an interval to update the state every 1 minute
     const intervalId = setInterval(() => {
       setLight(isLightOnNow());
-    }, 1000); // 1 minute interval (adjust as needed)
+    }, 60000); // 1 minute interval (adjust as needed)
 
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
