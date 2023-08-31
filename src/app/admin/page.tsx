@@ -9,7 +9,12 @@ import HeroSection from "../components/hero";
 import Herofooter from "../components/herofooter";
 import { getMessaging } from "firebase/messaging";
 import { collection, getFirestore, onSnapshot } from "firebase/firestore";
+import { Roboto } from "next/font/google";
 
+const roboto = Roboto({
+  weight:'500',
+  preload:false
+})
 
 function Page() {
   const [jammatTime, setJammatTime] = useState<any>();
@@ -55,9 +60,11 @@ function Page() {
 
   return (
     <>
+    <div className={roboto.className} >
       <NavBar />
       <HeroSection jammattime={jammatTime} />
       <Herofooter />
+      </div>
     </>
   );
 }
