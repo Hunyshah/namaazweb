@@ -6,21 +6,26 @@ import { useRouter } from 'next/navigation'
 function Page() {
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
+    const [error, seterror] = React.useState('')
+    const [loading,setloading] = React.useState(false)
+    
     const router = useRouter()
 
     const handleForm = async (event:any) => {
         event.preventDefault()
-
+        setloading(true)
         const { result, error } = await signIn(email, password);
         localStorage.setItem("d",'dd')
         
         if (error) {
-            return console.log(error)
+          setloading(false)
+            seterror('invalid credintials! Please inter Correct userName and Password'+error)
         }
 
         // else successful
-        console.log(result)
-        return router.push("/admin")
+        if (result){
+          setloading(false)
+        return router.push("/admin")}
     }
     
 
@@ -87,12 +92,14 @@ function Page() {
                 </div>
     
                 <div>
+                  {loading ?<h2 className="bg-white text-red-600"> loading....</h2> : null}
                   <button
                     type="submit"
                     className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                   >
                     Sign in
                   </button>
+                  <h3 className="text-white" >{error}</h3>
                 </div>
               </form>
     

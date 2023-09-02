@@ -3,7 +3,7 @@ import firebase_app from "@/app/firbase/firebaseConfig"; // Import your firebase
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../components/context/authContext";
 import { useRouter } from "next/navigation";
-import getDoument from "../firbase/getData";
+import getDoument, { getAnnouncement } from "../firbase/getData";
 import NavBar from "../components/nav";
 import HeroSection from "../components/hero";
 import Herofooter from "../components/herofooter";
@@ -18,15 +18,24 @@ const roboto = Roboto({
 
 function Page() {
   const [jammatTime, setJammatTime] = useState<any>();
+
+  const [alaan, setalaan] = useState<any>();
+
+  const [slideImage, setSlideImages] = useState<string|undefined>();
   const { user }: any = useAuthContext();
   const router = useRouter();
 
   useEffect(() => {
     async function getJammatdata() {
       let phone = localStorage.getItem("PHONE");
+      let alan = getAnnouncement(phone);
+      setalaan(alan)
       console.log("Phone retrieved = " + phone);
-      let allDocs: any = await getDoument(phone);
+      let allDocs: any = await getDoument(phone,'Prayers');
+      let slidedocs:any = await getDoument(phone,'SlideImages')
       setJammatTime(allDocs);
+      console.log(`slide images = ${slidedocs.length}`)
+      setSlideImages(slidedocs)
       console.log(allDocs[0].mosqueId)
       
 //  let q = query(collectionGroup(db, "User"), where('mobileNumber', '==', email));
@@ -39,7 +48,7 @@ function Page() {
       const messaging = getMessaging(firebase_app);
       const db = getFirestore(firebase_app);
     const collectionRef = collection(db, `Mosque/${allDocs.id}/Prayers`);
-
+    
     // Set up the real-time listener using onSnapshot
     const unsubscribe = onSnapshot(collectionRef, (snapshot:any) => {
       console.log("update in data");
@@ -51,6 +60,7 @@ function Page() {
       
       
     }
+    
     );
   }
     getJammatdata();
@@ -60,10 +70,10 @@ function Page() {
 
   return (
     <>
-    <div className={roboto.className} >
+    <div className={`${roboto.className} h-screen`} >
       <NavBar />
       <HeroSection jammattime={jammatTime} />
-      <Herofooter />
+      {slideImage&&<Herofooter imageslider = {slideImage} alan={alaan} />}
       </div>
     </>
   );

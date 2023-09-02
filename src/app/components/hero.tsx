@@ -89,14 +89,14 @@ const HeroSection: React.FC<Props> = ({ jammattime }) => {
                 
                 // <Image className='bg-transparent' src='/images/lightgs.png' alt='no pic' width={25} height={25} />
               ) : null} */}
-                  <div className='text-3xl mb-7'>    {item.id}</div>
-                  <div className='text-3xl text-red-600'>{item.data().JamatTime}</div>
+                  <div className='text-5xl mb-7'>    {item.id}</div>
+                  <div className='text-5xl text-red-600'>{item.data().JamatTime}</div>
                   <div className='text-3xl'> JAMAT</div>
                 </div>
               </div>
               <div className='border-2 border-green-600 my-2 rounded-xl px-5'>
-                <h4>Time In</h4>
-                <h2>{item.data().TimeIn}</h2>
+                <h4 className='text-3xl'>Time In</h4>
+                <h2 className='text-4xl' >{item.data().TimeIn}</h2>
               </div>
             </div>
           );

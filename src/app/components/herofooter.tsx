@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
@@ -36,21 +36,22 @@ const imageList = [
   },
 ];
 
-const Herofooter = (props: Props) => {
+const Herofooter = ({imageslider,alan}:any) => {
+  
   return (
-    <div className="main-parent flex justify-between bg-slate-950 text-white mt-10 ">
-      <div className="flex flex-col items-center ">
-        <div className={'border-2 border-gray-300 rounded-md p-4  '}>
+    <div className="main-parent flex justify-between bg-slate-950 text-white mt-10  h-[48%]" >
+      <div className="flex flex-col items-center  " style={{width:'40vw'}}>
+        <div className={'border-2 border-gray-300 rounded-md p-4  w-[100%] h-auto min-h-full'}>
           <div className=" text-5xl font-bold text-yellow-600"> Note !</div>
-          <div className=" mt-10   p-2 m-2 w-96 indent-4 bg-black text-yellow-500">
+          <div className=" mt-10   p-2 m-2  indent-4 bg-black text-yellow-500">
             <p className="text-4xl font-serif">
-              Please turn off or put your cell phone on silent
+              {alan}
             </p>
           </div>
         </div>
       </div>
 
-      <div>
+      <div style={{width:'10vw'}}>
         <Image src={qrcode} alt="qrCode" height={350} width={250}/>
       </div>
 
@@ -58,11 +59,13 @@ const Herofooter = (props: Props) => {
         style={{
           marginBottom: 10,
           marginRight: "5%",
-          width: "42%",
+          width: "40vw",
           borderColor: "gray",
           borderWidth: 1,
           borderRadius:10,
           padding: 10,
+          height:'100%'
+          
         }}
       >
         <Carousel
@@ -73,10 +76,11 @@ const Herofooter = (props: Props) => {
           arrows={false}
           transitionDuration={5000}
         >
-          {imageList.map((item, index) => {
+          {imageslider?.map((item:any, index:any) => {
             return (
-              <div key={index}>
-                <Image alt="slides" src={item.image} width={800} height={500} />
+              <div className="max-w-[100%] max-h-[100%] w-[100%] h-[500px]" key={index}>
+                <Image  layout="fill"  alt="slides" src={item?.data()?.IMAGE_URL}   />
+
               </div>
             );
           })}

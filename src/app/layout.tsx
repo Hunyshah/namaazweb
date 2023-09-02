@@ -23,7 +23,7 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="/fonts/digital-7.ttf" type='font/ttf' />
       </head>
-      <body className={`h-screen bg-slate-950 `}><AuthContextProvider>{children}</AuthContextProvider></body>
+      <body className={`h-screen bg-slate-950  `}><AuthContextProvider>{children}</AuthContextProvider></body>
     </html>
   )
 }

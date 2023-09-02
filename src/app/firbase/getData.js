@@ -1,8 +1,18 @@
 import firebase_app from "../firbase/firebaseConfig";
 import { getFirestore, doc, getDoc, collectionGroup,orderBy, query, where, getDocs, collection } from "firebase/firestore";
 const db = getFirestore(firebase_app);
+export const getAnnouncement = async(email)  =>{
+  let q = query(collectionGroup(db, "User"), where('mobileNumber', '==', email));
+  let querySnapshot = await getDocs(q);
+  console.log("Length of query = " + querySnapshot.docs.length);
 
-export default async function getDocument(email) {
+   let data = querySnapshot.docs[0].data();
+  
+  let docRef = doc(db,`Mosque/${data.mosqueId}/`)
+  let snapshot = await getDoc(docRef);
+  return snapshot.data().Announcement;
+}
+export default async function getDocument(email,dynamic) {
 //   email = email.substring(1, email.indexOf('@'));
   console.log(`Email = ${email}`);
   let q = query(collectionGroup(db, "User"), where('mobileNumber', '==', email));
@@ -13,13 +23,28 @@ export default async function getDocument(email) {
   
   let docRef = doc(db,`Mosque/${data.mosqueId}/`)
   let docSnap = await getDoc(docRef);
-  let cRef = collection(docSnap.ref,'Prayers');
+  if (dynamic === 'Prayers'){
+
+    let cRef = collection(docSnap.ref,dynamic);  //'Prayers'
   const namazOrderQuery = query(cRef,orderBy('ID','desc'))
   let pSnap = await getDocs(namazOrderQuery);
 
    
   console.log(pSnap.docs.length+"   yeh length he");
    return pSnap.docs;
+  }
+  else {
+
+    let cRef = collection(docSnap.ref,dynamic);  //'Prayers'
+  
+  let pSnap = await getDocs(cRef);
+
+   
+  console.log(pSnap.docs.length+"   yeh length he");
+   return pSnap.docs;
+
+  }
+  
 
 
 
