@@ -35,21 +35,21 @@ const NavBar = (props: Props) => {
   
 
   return (
-    <div className={` flex flex-row justify-between items-center bg-slate-900 text-white w-[100vw]  ${roboto.className}`}>
-       <div className='flex justify-evenly items-center  '>
-        <div className={`ml-8 text-3xl text-gray-200 w-[20vw] ${arabic.className}`}>{datehijri} </div>
+    <div className={` flex flex-row justify-between items-center bg-slate-900 text-white   ${roboto.className}`}>
+       <div className='flex justify-evenly items-center  w-[22%]'>
+        <div className={`ml-8 text-4xl text-gray-200  ${arabic.className}`}>{datehijri} </div>
         
         </div>
         <div className=' bg-slate-50 h-24 w-1'></div>
         {/* <div className='flex justify-between items-center '> */}
-            <div className='flex flex-col items-center w-[14vw]'>
+            <div className='flex flex-col items-center '>
                 <h3 className='text-6xl text-red-600'>____</h3>
-                <h5 className={`text-4xl text-gray-200 `}>Until</h5>
+                <h5 className={`text-[190%] text-gray-200 `}>Until</h5>
                 </div>        
             {/* </div> */}
     
         <span className='block bg-slate-50 h-24 w-1'></span>
-            <div className='text-5xl font-mono  min-w-[320px] '><Clock/></div>
+            <div className='text-[300%] font-mono  min-w-[320px] '><Clock/></div>
             
         <span className='block bg-slate-50 h-24 w-1'></span>
         <div className='flex justify-between items-center'>
@@ -64,7 +64,7 @@ const NavBar = (props: Props) => {
         
 
         <span className='block bg-slate-50 h-24 w-1'></span>
-        <div className='text-3xl w-[20vw] '> {formattedDate}</div>
+        <div className='text-3xl  w-[16%]'> {formattedDate}</div>
     </div>
   )
 }

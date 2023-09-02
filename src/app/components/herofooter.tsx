@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import qrcode from '../../../public/images/qr.png'
 
 type Props = {};
 
@@ -40,13 +41,17 @@ const Herofooter = (props: Props) => {
     <div className="main-parent flex justify-between bg-slate-950 text-white mt-10 ">
       <div className="flex flex-col items-center">
         <div style={{ marginLeft: 50 }}>
-          <div className="text-5xl font-bold "> Note </div>
-          <div className=" mt-10">
+          <div className="text-5xl font-bold text-yellow-600"> Note !</div>
+          <div className=" mt-10 border-2 border-gray-300 rounded-md p-2 m-2 w-96 indent-4 bg-black text-yellow-500">
             <p className="text-4xl font-serif">
               Please turn off or put your cell phone on silent
             </p>
           </div>
         </div>
+      </div>
+
+      <div>
+        <Image src={qrcode} alt="qrCode" height={200} width={200}/>
       </div>
 
       <div

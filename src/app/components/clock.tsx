@@ -1,8 +1,9 @@
 'use client';
 import React, { useState, useEffect } from 'react';
-import {Orbitron} from '@next/font/google'
+import {Wallpoet} from '@next/font/google'
 
-const orbriton = Orbitron({
+
+const orbriton = Wallpoet({
   weight:"400",
 preload:false
 })
@@ -20,9 +21,9 @@ function Clock() {
   }, []);
 
   return (
-    <><div className='max-w-[22vw]'>
-      {currentTime && <p className={orbriton.className}>{currentTime}</p>}
-      </div>
+    <>
+      {currentTime && <p  className={` ${orbriton.className} `}>{currentTime}</p>}
+    
     </>
   );
 }
