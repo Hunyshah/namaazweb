@@ -39,10 +39,10 @@ const imageList = [
 const Herofooter = (props: Props) => {
   return (
     <div className="main-parent flex justify-between bg-slate-950 text-white mt-10 ">
-      <div className="flex flex-col items-center">
-        <div style={{ marginLeft: 50 }}>
-          <div className="text-5xl font-bold text-yellow-600"> Note !</div>
-          <div className=" mt-10 border-2 border-gray-300 rounded-md p-2 m-2 w-96 indent-4 bg-black text-yellow-500">
+      <div className="flex flex-col items-center justify-center">
+        <div className={'border-2 border-gray-300 rounded-md p-4 '}style={{ marginLeft: 50 }}>
+          <div className=" text-5xl font-bold text-yellow-600"> Note !</div>
+          <div className=" mt-10   p-2 m-2 w-96 indent-4 bg-black text-yellow-500">
             <p className="text-4xl font-serif">
               Please turn off or put your cell phone on silent
             </p>
@@ -51,7 +51,7 @@ const Herofooter = (props: Props) => {
       </div>
 
       <div>
-        <Image src={qrcode} alt="qrCode" height={200} width={200}/>
+        <Image src={qrcode} alt="qrCode" height={350} width={250}/>
       </div>
 
       <div
