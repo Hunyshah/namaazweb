@@ -78,7 +78,7 @@ const Herofooter = ({imageslider,alan,color}:any) => {
         >
           {imageslider?.map((item:any, index:any) => {
             return (
-              <div  className="   w-[100%] max-h-[490px] h-[500px] " key={index}>
+              <div  className="   w-[100%] max-h-[490px] h-[500px] mb-12" key={index}>
                 <Image  layout="fill"   alt="slides" src={item?.data()?.IMAGE_URL}   />
 
               </div>
