@@ -3,7 +3,7 @@ import firebase_app from "@/app/firbase/firebaseConfig"; // Import your firebase
 import { useEffect, useState } from "react";
 import { useAuthContext } from "../components/context/authContext";
 import { useRouter } from "next/navigation";
-import getDoument, { getAnnouncement } from "../firbase/getData";
+import getDoument, { getAnnouncement, getcolor } from "../firbase/getData";
 import NavBar from "../components/nav";
 import HeroSection from "../components/hero";
 import Herofooter from "../components/herofooter";
@@ -21,6 +21,8 @@ function Page() {
 
   const [alaan, setalaan] = useState<any>();
 
+  const [color, setcolor] = useState<any>();
+
   const [slideImage, setSlideImages] = useState<string|undefined>();
   const { user }: any = useAuthContext();
   const router = useRouter();
@@ -30,6 +32,8 @@ function Page() {
       let phone = localStorage.getItem("PHONE");
       let alan = getAnnouncement(phone);
       setalaan(alan)
+      let color = await getcolor(phone)
+      setcolor(color)
       console.log("Phone retrieved = " + phone);
       let allDocs: any = await getDoument(phone,'Prayers');
       let slidedocs:any = await getDoument(phone,'SlideImages')
@@ -66,14 +70,14 @@ function Page() {
     getJammatdata();
 
     if (user == null) router.push("/");
-  }, [user]);
+  }, [user,color]);
 
   return (
     <>
-    <div className={`${roboto.className} h-screen`} >
-      <NavBar />
-      <HeroSection jammattime={jammatTime} />
-      {slideImage&&<Herofooter imageslider = {slideImage} alan={alaan} />}
+    <div  className={`${roboto.className} h-screen `} >
+      <NavBar color = {color} />
+      <HeroSection color = {color} jammattime={jammatTime} />
+      {slideImage&&<Herofooter color={color} imageslider = {slideImage} alan={alaan} />}
       </div>
     </>
   );

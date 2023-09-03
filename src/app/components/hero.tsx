@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 // import {} from '@/app/components'
 type Props = {
-  jammattime: any[]; // Update the type of jammattime as per your data structure
+  jammattime: any[]; 
+  color:string// Update the type of jammattime as per your data structure
 };
 
-const HeroSection: React.FC<Props> = ({ jammattime }) => {
+const HeroSection: React.FC<Props> = ({ jammattime ,color}) => {
   const [light, setLight] = useState(false);
   
   // Function to convert time in '12:28 pm' format to 24-hour format
@@ -74,9 +75,9 @@ const HeroSection: React.FC<Props> = ({ jammattime }) => {
     // Clear the interval when the component unmounts
     return () => clearInterval(intervalId);
   }, [jammattime]);
-
+  // bg-slate-950
   return (
-    <div className='bg-slate-950 text-white pt-14 pb-5'>
+    <div style={{backgroundColor:color}} className={` text-white pt-14 pb-5`}>
       <div className='1stparent flex justify-evenly items-center'>
         {jammattime?.map((item: any) => {
           const isHighlighted = compareTimes(item.data().TimeIn, item.data().JamatTime) && light;

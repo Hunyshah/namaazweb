@@ -3,7 +3,9 @@ import React from 'react'
 import Clock from './clock'
 import {Noto_Sans_Arabic,Roboto} from '@next/font/google'
 
-type Props = {}
+type Props = {
+  color:string
+}
 
 const arabic = Noto_Sans_Arabic({
   weight:'700',
@@ -14,7 +16,8 @@ const roboto = Roboto({
   preload:false
 })
 
-const NavBar = (props: Props) => {
+const NavBar = ({color}: Props) => {
+  console.log(color)
   
   const datehijri = new Intl.DateTimeFormat('ar-TN-u-ca-islamic', {day: 'numeric', month: 'long',weekday: 'long',year : 'numeric'}).format(Date.now());
   function formatDate(date:any) {
@@ -33,9 +36,9 @@ const NavBar = (props: Props) => {
   const today = new Date();
   const formattedDate = formatDate(today);
   
-
+  // bg-slate-900
   return (
-    <div className={` flex flex-row justify-between items-center bg-slate-900 text-white   ${roboto.className}`}>
+    <div style={{backgroundColor:color}}  className={` flex flex-row justify-between items-center   text-white   ${roboto.className}`}>
        <div className='flex justify-evenly items-center  w-[22%]'>
         <div className={`ml-8 text-4xl text-gray-200  ${arabic.className}`}>{datehijri} </div>
         

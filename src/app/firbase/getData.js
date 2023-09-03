@@ -10,7 +10,20 @@ export const getAnnouncement = async(email)  =>{
   
   let docRef = doc(db,`Mosque/${data.mosqueId}/`)
   let snapshot = await getDoc(docRef);
+  
   return snapshot.data().Announcement;
+}
+export const getcolor = async(email)  =>{
+  let q = query(collectionGroup(db, "User"), where('mobileNumber', '==', email));
+  let querySnapshot = await getDocs(q);
+  console.log("Length of query = " + querySnapshot.docs.length);
+
+   let data = querySnapshot.docs[0].data();
+  
+  let docRef = doc(db,`Mosque/${data.mosqueId}/`)
+  let snapshot = await getDoc(docRef);
+  console.log(snapshot.data().color)
+  return snapshot.data().color;
 }
 export default async function getDocument(email,dynamic) {
 //   email = email.substring(1, email.indexOf('@'));
