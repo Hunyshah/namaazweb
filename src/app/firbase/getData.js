@@ -27,10 +27,8 @@ export const getcolor = async(email)  =>{
 }
 export default async function getDocument(email,dynamic) {
 //   email = email.substring(1, email.indexOf('@'));
-  console.log(`Email = ${email}`);
   let q = query(collectionGroup(db, "User"), where('mobileNumber', '==', email));
   let querySnapshot = await getDocs(q);
-  console.log("Length of query = " + querySnapshot.docs.length);
 
    let data = querySnapshot.docs[0].data();
   
@@ -43,7 +41,6 @@ export default async function getDocument(email,dynamic) {
   let pSnap = await getDocs(namazOrderQuery);
 
    
-  console.log(pSnap.docs.length+"   yeh length he");
    return pSnap.docs;
   }
   else {
@@ -53,10 +50,10 @@ export default async function getDocument(email,dynamic) {
   let pSnap = await getDocs(cRef);
 
    
-  console.log(pSnap.docs.length+"   yeh length he");
    return pSnap.docs;
 
   }
+ 
   
 
 
@@ -76,7 +73,12 @@ export default async function getDocument(email,dynamic) {
 }
 
 
-
+export const getMosqueId = async (email)=>{
+  let q = query(collectionGroup(db, "User"), where('mobileNumber', '==', email));
+  let querySnapshot = await getDocs(q);
+   let data = querySnapshot.docs[0].data();
+   return data.mosqueId;
+}
 
 
 // import firebase_app from "../firbase/firebaseConfig";
