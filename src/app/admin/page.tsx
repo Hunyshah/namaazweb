@@ -37,25 +37,31 @@ function Page() {
   useEffect(() => {
     let phone = localStorage.getItem("PHONE");
     getMosqueId(phone).then((mosqueId)=>{
+      
       console.log("Mosque id new  = "+mosqueId);
       const mosqueupdatesQuery = query(collection(db, "Mosque"));
-      onSnapshot(mosqueupdatesQuery, (qSnap) => {
-        console.log("Mosque Alan chnage name");
+      onSnapshot(mosqueupdatesQuery, (qSnap:any) => {
+        console.log("Mosque Alan chnage name"+ JSON.stringify(qSnap.docs));
+        setcolor(qSnap.docs.color)
       });
+
+      // let alan = getAnnouncement(phone);
+      // setalaan(alan);
+      // let color =  getcolor(phone);
+      // setcolor(color);
       const pryersUpdateQuery = query(
         collection(db, "Mosque/" + mosqueId + "/Prayers")
       );
-      onSnapshot(pryersUpdateQuery, (pSnap) => {
-        pSnap.forEach((doc)=>{
-          console.log("Updated Prayer Name = "+doc.id);
-          console.log("Update time = "+doc.get('JamatTime'))
-        })
+      onSnapshot(pryersUpdateQuery, (pSnap:any) =>  {
+        // console.log("this is full value of prayers "+ JSON.stringify(pSnap.docs.data().TimeIn))
+        setJammatTime(pSnap.docs)
       });
       const slideImagesQuery = query(
         collection(db, "Mosque/" + mosqueId + "/SlideImages")
       );
-      onSnapshot(slideImagesQuery, (pSnap) => {
-        console.log("Images Changed");
+      onSnapshot(slideImagesQuery, (pSnap:any) => {
+        // console.log("Images changed " +pSnap.docs);
+        setSlideImages(pSnap.docs);
       });
     })
  
@@ -64,17 +70,15 @@ function Page() {
   useEffect(() => {
     async function getJammatdata() {
       let phone = localStorage.getItem("PHONE");
-      let alan = getAnnouncement(phone);
-      setalaan(alan);
-      let color = await getcolor(phone);
-      setcolor(color);
+      
       console.log("Phone retrieved = " + phone);
-      let allDocs: any = await getDoument(phone, "Prayers");
-      let slidedocs: any = await getDoument(phone, "SlideImages");
-      setJammatTime(allDocs);
-      console.log(`slide images = ${slidedocs.length}`);
-      setSlideImages(slidedocs);
-      mosqueId = allDocs[0].id
+      // let allDocs: any = await getDoument(phone, "Prayers");
+      // let slidedocs: any = await getDoument(phone, "SlideImages");
+      // // console.log("this is 2nd prayers data " + JSON.stringify(allDocs.data().TimeIn))
+      // setJammatTime(allDocs);
+      // console.log(`slide images = ${slidedocs.length}`);
+      // // setSlideImages(slidedocs);
+      // mosqueId = allDocs[0].id
    
     }
     getJammatdata();
