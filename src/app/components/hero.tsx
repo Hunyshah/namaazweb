@@ -39,7 +39,6 @@ const HeroSection: React.FC<Props> = ({ jammattime ,color}) => {
     const currentTimeMinutes = hour3 * 3600 + minute3 * 60;
     const time1Minutes = hour1 * 3600 + minute1 * 60;
     const time2Minutes = hour2 * 3600 + minute2 * 60;
-    console.log(currentTimeMinutes,time1Minutes,time2Minutes)
 
     if (currentTimeMinutes >= time1Minutes && currentTimeMinutes < time2Minutes) {
       return true;
