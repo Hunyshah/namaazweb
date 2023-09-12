@@ -39,9 +39,9 @@ const imageList = [
 const Herofooter = ({imageslider,alan,color}:any) => {
   // bg-slate-950
   return (
-    <div style={{backgroundColor:color}} className={`main-parent flex justify-between  text-white pt-3  h-[53.5%]`} >
+    <div style={{backgroundColor:color}} className={`main-parent flex justify-evenly  text-white pt-3  h-[53.5%]`} >
       <div className="flex flex-col items-center  " style={{width:'40vw'}}>
-        <div className={'border-2 border-gray-300 rounded-md p-4  w-[100%] h-auto min-h-full'}>
+        <div style={{ height:'90%' }} className={'border-2 border-gray-300 rounded-md p-4  w-[100%]  '}>
           <div className=" text-5xl font-bold text-yellow-600"> Note !</div>
           <div className=" mt-10   p-2 m-2  indent-4 bg-black text-yellow-500">
             <p className="text-4xl font-serif">
@@ -64,7 +64,8 @@ const Herofooter = ({imageslider,alan,color}:any) => {
           borderWidth: 1,
           borderRadius:10,
           padding: 10,
-          height:'100%'
+          height:'90%',
+          
           
         }}
       >
@@ -78,7 +79,7 @@ const Herofooter = ({imageslider,alan,color}:any) => {
         >
           {imageslider?.map((item:any, index:any) => {
             return (
-              <div  className="   w-[100%] max-h-[490px] h-[500px] mb-12" key={index}>
+              <div   className="  w-[50%] max-h-[490px] h-[500px] mb-12" key={index}>
                 <Image  layout="fill"   alt="slides" src={item?.data()?.IMAGE_URL}   />
 
               </div>

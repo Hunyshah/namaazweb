@@ -91,11 +91,14 @@ function Page() {
 
     if (user == null) router.push("/");
   }, [user, color]);
-
+const jammatExactTime = jammatTime?.map((item:any)=>{
+return item.data().JamatTime
+})
+// console.log(jammatExactTime)
   return (
     <>
       <div className={`${roboto.className} h-screen `}>
-        <NavBar color={color} />
+        <NavBar color={color} jammattime={jammatExactTime}/>
         <HeroSection color={color} jammattime={jammatTime} />
         {slideImage && (
           <Herofooter color={color} imageslider={slideImage} alan={alaan} />
