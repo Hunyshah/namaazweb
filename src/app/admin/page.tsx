@@ -45,18 +45,15 @@ function Page() {
   useEffect(() => {
     let phone = localStorage.getItem("PHONE");
     getMosqueId(phone).then((mosqueId) => {
-      const mosqueupdatesQuery = query(collection(db, "Mosque"));
-      onSnapshot(
-        mosqueupdatesQuery,
-        (qSnap: QuerySnapshot<DocumentData, DocumentData>) => {
-          let color = qSnap.docs[0].get('color')
-          let alan = qSnap.docs[0].get('Announcement');
-          setcolor(color)
-          setalaan(alan)
-          
-        }
-      );
-
+      const docRef = doc(db,'Mosque',mosqueId);
+      onSnapshot(docRef,(doc)=>{
+        console.log("Mosque document cahnge")
+        let color  = doc.get("color");
+        let alan = doc.get("Announcement");
+        setcolor(color);
+        setalaan(alan)
+      })
+     
       
       const pryersUpdateQuery = query(
         collection(db, "Mosque/" + mosqueId + "/Prayers")

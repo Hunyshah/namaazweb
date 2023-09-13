@@ -37,6 +37,8 @@ const HeroSection: React.FC<Props> = ({ jammattime ,color}) => {
     const { hour: hour1, minute: minute1 } = convertTo24Hour(time1);
     const { hour: hour2, minute: minute2 } = convertTo24Hour(time2);
     const currentTimeMinutes = hour3 * 3600 + minute3 * 60;
+
+    
     const time1Minutes = hour1 * 3600 + minute1 * 60;
     const time2Minutes = hour2 * 3600 + minute2 * 60;
 
