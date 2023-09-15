@@ -80,8 +80,8 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
       hour12: true,
     };
    
-    const formatter = new Intl.DateTimeFormat("en-US", options );
-    const formattedTime = formatter.format(dateObject);
+    // const formatter = new Intl.DateTimeFormat("en-US", options );
+    // const formattedTime = formatter.format(dateObject);
 
     return dateObject;
   };

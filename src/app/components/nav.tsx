@@ -30,8 +30,8 @@ const roboto = Roboto({
 // fixedTime.setMinutes(fixedTime.getMinutes() + 15);
 const NavBar = ({ color, jammattime }: Props) => {
   const [currentTime, setCurrentTime] = useState("");
-  const [remainingMinutes, setRemainingMinutes] = useState(0);
-  const [remainingTimes, setRemainingTimes] = useState([]); // console.log("Remainig Time" + remainingMinutes)
+  // const [remainingMinutes, setRemainingMinutes] = useState(0);
+  // const [remainingTimes, setRemainingTimes] = useState([]); // console.log("Remainig Time" + remainingMinutes)
 
   const timer = useAppSelector((state) => state.mReducers.currentValue);
   useEffect(() => {
@@ -43,18 +43,18 @@ const NavBar = ({ color, jammattime }: Props) => {
       clearInterval(intervalID);
     };
   }, []);
-  const fixedTimes: any = jammattime;
+  // const fixedTimes: any = jammattime;
 
-  function convertTo12HourFormat(date: any) {
-    const options = {
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      hour12: true,
-    };
+  // function convertTo12HourFormat(date: any) {
+  //   const options = {
+  //     hour: "numeric",
+  //     minute: "numeric",
+  //     second: "numeric",
+  //     hour12: true,
+  //   };
 
-    return date.toLocaleTimeString([], options);
-  }
+  //   return date.toLocaleTimeString([], options);
+  // }
 
   // Get the eventFixDate from the database (assuming it's already a Date object)
   const eventFixDate = new Date("2023-09-10T15:30:00"); // Example 12-hour format date
@@ -63,27 +63,27 @@ const NavBar = ({ color, jammattime }: Props) => {
   const currentDate = new Date();
 
   // Convert the current date to 12-hour format
-  const current12HourFormat = convertTo12HourFormat(currentDate);
+  // const current12HourFormat = convertTo12HourFormat(currentDate);
 
   // Now, you can compare eventFixDate and current12HourFormat
 
-  function convertTimeStringToDate(timeString: any) {
-    console.log(timeString);
-    // Split the time string into its components
-    const [time, period] = timeString.split(" ");
+  // function convertTimeStringToDate(timeString: any) {
+  //   console.log(timeString);
+  //   // Split the time string into its components
+  //   const [time, period] = timeString.split(" ");
 
-    // Split the time into hours, minutes, and seconds
-    const [hours, minutes, seconds] = time.split(":").map(Number);
+  //   // Split the time into hours, minutes, and seconds
+  //   const [hours, minutes, seconds] = time.split(":").map(Number);
 
-    // Adjust hours for the 12-hour format (AM/PM)
-    const adjustedHours = period === "PM" ? hours + 12 : hours;
+  //   // Adjust hours for the 12-hour format (AM/PM)
+  //   const adjustedHours = period === "PM" ? hours + 12 : hours;
 
-    // Create a new Date object with the extracted values
-    const date = new Date();
-    date.setHours(adjustedHours, minutes, seconds, 0);
+  //   // Create a new Date object with the extracted values
+  //   const date = new Date();
+  //   date.setHours(adjustedHours, minutes, seconds, 0);
 
-    return date;
-  }
+  //   return date;
+  // }
 
   //   useEffect(() => {
   //     const interval = setInterval(() => {
@@ -215,7 +215,7 @@ const NavBar = ({ color, jammattime }: Props) => {
       <div className=" bg-slate-50 h-24 w-0.5"></div>
       {/* <div className='flex justify-between items-center '> */}
       <div className="flex flex-col items-center ">
-        <h3 className="text-6xl text-red-600">{remainingMinutes}</h3>
+        <h3 className="text-6xl text-red-600"></h3>
         <h5 className={`text-[190%] text-gray-200 `}>Until</h5>
       </div>
       {/* </div> */}
