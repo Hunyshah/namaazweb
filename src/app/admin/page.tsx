@@ -21,6 +21,7 @@ import {
   doc,
   getFirestore,
   onSnapshot,
+  orderBy,
   query,
 } from "firebase/firestore";
 import { Roboto } from "next/font/google";
@@ -42,6 +43,8 @@ function Page() {
   const [slideImage, setSlideImages] = useState<string | undefined>();
   const { user }: any = useAuthContext();
   const router = useRouter();
+  const currentDate = new Date();
+  const dayOfMonth = currentDate.getDate();
   useEffect(() => {
     let phone = localStorage.getItem("PHONE");
     getMosqueId(phone).then((mosqueId) => {
@@ -56,7 +59,8 @@ function Page() {
      
       
       const pryersUpdateQuery = query(
-        collection(db, "Mosque/" + mosqueId + "/Prayers")
+        collection(db, "Mosque/" + mosqueId + "/Prayers/Day_"+dayOfMonth+"/Prayers"),
+        orderBy('ID','desc')
       );
       onSnapshot(pryersUpdateQuery, (pSnap: any) => {
         setJammatTime(pSnap.docs);
@@ -95,8 +99,8 @@ return item.data().JamatTime
   return (
     <>
       <div className={`${roboto.className} h-screen `}>
-        <NavBar color={color} jammattime={jammatExactTime}/>
-        <HeroSection color={color} jammattime={jammatTime} />
+        <div className= "h-50% p-" > <NavBar color={color} jammattime={jammatExactTime}/>
+        {jammatTime&&<HeroSection color={color} jammattime={jammatTime} />}</div>
         {slideImage && (
           <Herofooter color={color} imageslider={slideImage} alan={alaan} />
         )}
