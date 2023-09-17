@@ -48,19 +48,21 @@ function Page() {
   useEffect(() => {
     let phone = localStorage.getItem("PHONE");
     getMosqueId(phone).then((mosqueId) => {
-      const docRef = doc(db,'Mosque',mosqueId);
-      onSnapshot(docRef,(doc)=>{
-        console.log("Mosque document cahnge")
-        let color  = doc.get("color");
+      const docRef = doc(db, "Mosque", mosqueId);
+      onSnapshot(docRef, (doc) => {
+        console.log("Mosque document cahnge");
+        let color = doc.get("color");
         let alan = doc.get("Announcement");
         setcolor(color);
-        setalaan(alan)
-      })
-     
-      
+        setalaan(alan);
+      });
+
       const pryersUpdateQuery = query(
-        collection(db, "Mosque/" + mosqueId + "/Prayers/Day_"+dayOfMonth+"/Prayers"),
-        orderBy('ID','desc')
+        collection(
+          db,
+          "Mosque/" + mosqueId + "/Prayers/Day_" + dayOfMonth + "/Prayers"
+        ),
+        orderBy("ID", "desc")
       );
       onSnapshot(pryersUpdateQuery, (pSnap: any) => {
         setJammatTime(pSnap.docs);
@@ -69,7 +71,7 @@ function Page() {
         collection(db, "Mosque/" + mosqueId + "/SlideImages")
       );
       onSnapshot(slideImagesQuery, (pSnap: any) => {
-        console.log("Images changed " +pSnap.docs.length);
+        console.log("Images changed " + pSnap.docs.length);
         setSlideImages(pSnap.docs);
       });
     });
@@ -92,15 +94,18 @@ function Page() {
 
     if (user == null) router.push("/");
   }, [user, color]);
-const jammatExactTime = jammatTime?.map((item:any)=>{
-return item.data().JamatTime
-})
-// console.log(jammatExactTime)
+  const jammatExactTime = jammatTime?.map((item: any) => {
+    return item.data().JamatTime;
+  });
+  // console.log(jammatExactTime)
   return (
     <>
       <div className={`${roboto.className} h-screen `}>
-        <div className= "h-50% p-" > <NavBar color={color} jammattime={jammatExactTime}/>
-        {jammatTime&&<HeroSection color={color} jammattime={jammatTime} />}</div>
+        <div  >
+          {" "}
+          <NavBar color={color} jammattime={jammatExactTime} />
+          <HeroSection color={color} jammattime={jammatTime} />
+        </div>
         {slideImage && (
           <Herofooter color={color} imageslider={slideImage} alan={alaan} />
         )}

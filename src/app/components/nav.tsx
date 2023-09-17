@@ -205,9 +205,9 @@ const NavBar = ({ color, jammattime }: Props) => {
   return (
     <div
       style={{ backgroundColor: color }}
-      className={` flex flex-row justify-between items-center   text-white border-b-2 pb-4  ${roboto.className}`}
+      className={` flex flex-row justify-around items-center   text-white border-b-2 pb-4  ${roboto.className}`}
     >
-      <div className="flex justify-evenly items-center  w-[22%]">
+      <div className="flex justify-between items-center  w-[25%]">
         <div className={`ml-8 text-4xl text-gray-200  ${arabic.className}`}>
           {datehijri}{" "}
         </div>
@@ -221,7 +221,7 @@ const NavBar = ({ color, jammattime }: Props) => {
       {/* </div> */}
 
       <span className="block bg-slate-50 h-24 w-0.5"></span>
-      <div className="text-[400%] font-mono  min-w-[320px] ">
+      <div className="text-[450%] font-mono  min-w-[320px] ">
         {currentTime && (
           <p className={`${digitFonts.className} font-sans`}>{currentTime}</p>
         )}
@@ -230,13 +230,13 @@ const NavBar = ({ color, jammattime }: Props) => {
       <span className="block bg-slate-50 h-24 w-0.5"></span>
       <div className="flex justify-between items-center">
         <div className="flex flex-col items-center">
-          <div className="text-4xl text-green-600">{timer}</div>
-          <div className="text-4xl text-gray-200">Remaing Time</div>
+          <div className="text-6xl text-green-600">{timer}</div>
+          <div className="text-2xl text-gray-200">Remaing Time</div>
         </div>
       </div>
 
       <span className="block bg-slate-50 h-24 w-0.5"></span>
-      <div className="text-3xl  w-[16%]"> {formattedDate}</div>
+      <div className="text-4xl  w-[16%]" style={{backgroundColor:'green'}}> {formattedDate}</div>
     </div>
   );
 };

@@ -39,7 +39,7 @@ const imageList = [
 const Herofooter = ({imageslider,alan,color}:any) => {
   // bg-slate-950
   return (
-    <div style={{backgroundColor:color}} className={`main-parent flex justify-evenly  text-white pt-3  h-[53.5%]`} >
+    <div style={{backgroundColor:color}} className={`main-parent flex justify-between  text-white pt-3  h-[53.5%]`} >
       <div className="flex flex-col items-center  " style={{width:'40vw'}}>
         <div style={{ height:'90%' }} className={'border-2 border-gray-300 rounded-md p-4  w-[100%]  '}>
           <div className=" text-5xl font-bold text-yellow-600"> Note !</div>

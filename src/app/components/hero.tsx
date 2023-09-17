@@ -92,10 +92,14 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
 
     const intervalId = setInterval(() => {
       console.log("Intervling running "+(++i));
+      
+   
       jammattime?.map((item) => {
+        console.log("Time In = "+item.data().TimeIn)
         if (compareTimes(item.data().TimeIn, item.data().JamatTime)) {
-          setActivePrayer(item.data());
           isCountDownStared = true;
+          setActivePrayer(item.data());
+
         }
       });
       console.log(`Active Prayer = ${activePrayer?.ID} AND isCountDown = ${isCountDownStared}`);
@@ -106,7 +110,6 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
         const timeDiff = convertStringToTime(activeJamatTime) - now;
         const minutes = Math.floor(timeDiff / 60000);
         const seconds = Math.floor((timeDiff % 60000) / 1000);
-
         const paddedMinutes: string = minutes.toString().padStart(2, "0");
         const paddedSeconds: string = seconds.toString().padStart(2, "0");
         const timeString = `${paddedMinutes}:${paddedSeconds}`;
