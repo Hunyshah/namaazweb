@@ -207,9 +207,9 @@ const NavBar = ({ color, jammattime }: Props) => {
       style={{ backgroundColor: color }}
       className={` flex flex-row justify-around items-center   text-white border-b-2 pb-4  ${roboto.className}`}
     >
-      <div className="flex justify-between items-center  w-[25%]">
-        <div className={`ml-8 text-4xl text-gray-200  ${arabic.className}`}>
-          {datehijri}{" "}
+      <div className="flex  items-center  ">
+        <div className={` text-4xl text-gray-200  ${arabic.className}`}>
+          {datehijri}
         </div>
       </div>
       <div className=" bg-slate-50 h-24 w-0.5"></div>
@@ -231,12 +231,12 @@ const NavBar = ({ color, jammattime }: Props) => {
       <div className="flex justify-between items-center">
         <div className="flex flex-col items-center">
           <div className="text-6xl text-green-600">{timer}</div>
-          <div className="text-2xl text-gray-200">Remaing Time</div>
+          <div className="text-2xl text-gray-200 ">Remaing Time</div>
         </div>
       </div>
 
       <span className="block bg-slate-50 h-24 w-0.5"></span>
-      <div className="text-4xl  w-[16%]" style={{backgroundColor:'green'}}> {formattedDate}</div>
+      <div className="text-4xl  bg-gray-700 " > {formattedDate}</div>
     </div>
   );
 };
