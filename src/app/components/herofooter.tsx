@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
@@ -37,11 +37,27 @@ const imageList = [
 ];
 
 const Herofooter = ({imageslider,alan,color}:any) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    // console.log(imageslider?.length +"<><><><><><><><><><>><><><><><>")
+    const startTimer = setTimeout(() => {
+      console.log(imageslider?.length +"<><><><><><><><><><>><><><><><> after 10 minutes")
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % imageslider?.length);
+        
+      }, 10000); // Change 10000 to the desired interval in milliseconds (10 seconds)
+
+      return () => clearInterval(interval);
+    }, 60000); // 10 minutes in milliseconds
+
+    return () => clearTimeout(startTimer);
+  }, [imageslider]);
   // bg-slate-950
   return (
-    <div style={{backgroundColor:color}} className={`main-parent flex justify-evenly  text-white pt-3  h-[53.5%]`} >
-      <div className="flex flex-col items-center  " style={{width:'35vw'}}>
-        <div style={{ height:'90%' }} className={'border-2 border-gray-300 rounded-md p-4  w-[100%]  '}>
+    <div style={{backgroundColor:color}} className={`main-parent flex justify-between  text-white pt-3  h-[53.5%]`} >
+      <div className="flex flex-col items-center ml-5  " style={{width:'40vw'}}>
+        <div style={{ height:'68%' }} className={'border-2 border-gray-300 rounded-md p-4  w-[100%]  '}>
           <div className=" text-5xl font-bold text-yellow-600"> Note !</div>
           <div className=" mt-10   p-2 m-2  indent-4 bg-black text-yellow-500">
             <p className="text-4xl font-serif">
@@ -51,7 +67,7 @@ const Herofooter = ({imageslider,alan,color}:any) => {
         </div>
       </div>
 
-      <div style={{width:'12vw',alignSelf:'center',height:'auto'}}>
+      <div style={{width:'12vw',height:'auto',marginTop:'4%'}}>
         <Image src={qrcode} alt="qrCode" height={350} width={250}/>
       </div>
 
@@ -59,12 +75,13 @@ const Herofooter = ({imageslider,alan,color}:any) => {
         style={{
           marginBottom: 10,
         
-          width: "35vw",
+          width: "40vw",
           borderColor: "gray",
           borderWidth: 1,
           borderRadius:10,
           padding: 10,
-          height:'90%',
+          height:'68%',
+          marginRight:'20px'
           
           
         }}
@@ -79,8 +96,8 @@ const Herofooter = ({imageslider,alan,color}:any) => {
         >
           {imageslider?.map((item:any, index:any) => {
             return (
-              <div   className="  w-[50%] max-h-[490px] h-[447px] mb-12" key={index}>
-                <Image  layout="fill"   alt="slides" src={item?.data()?.IMAGE_URL}   />
+              <div   className="  w-[50%]  mb-12" key={index}>
+                <Image  fill={true}  layout='fill'    alt="slides" src={item?.data()?.IMAGE_URL}   />
 
               </div>
             );
@@ -106,6 +123,7 @@ const Herofooter = ({imageslider,alan,color}:any) => {
         <p className='text-2xl'>4: 35</p>
     </div>
  </div> */}
+ 
     </div>
   );
 };

@@ -205,38 +205,38 @@ const NavBar = ({ color, jammattime }: Props) => {
   return (
     <div
       style={{ backgroundColor: color }}
-      className={` flex flex-row justify-around items-center   text-white border-b-2 pb-4  ${roboto.className}`}
+      className={` flex flex-row  items-center   text-white border-b-2 pb-4  ${roboto.className}`}
     >
-      <div className="flex  items-center  ">
-        <div className={` text-4xl text-gray-200  ${arabic.className}`}>
+      <div className="flex  items-center  ml-5">
+        <div className={` text-5xl text-gray-200  ${arabic.className}`}>
           {datehijri}
         </div>
       </div>
-      <div className=" bg-slate-50 h-24 w-0.5"></div>
+      <div className=" bg-slate-50 h-24 w-0.5 ml-5"></div>
       {/* <div className='flex justify-between items-center '> */}
-      <div className="flex flex-col items-center ">
+      {/* <div className="flex flex-col items-center ">
         <h3 className="text-6xl text-red-600"></h3>
         <h5 className={`text-[190%] text-gray-200 `}>Until</h5>
-      </div>
+      </div> */}
       {/* </div> */}
 
-      <span className="block bg-slate-50 h-24 w-0.5"></span>
-      <div className="text-[450%] font-mono  min-w-[320px] ">
+      {/* <span className="block bg-slate-50 h-24 w-0.5"></span> */}
+      <div className="text-[650%] font-mono  min-w-[320px] ml-5">
         {currentTime && (
           <p className={`${digitFonts.className} font-sans`}>{currentTime}</p>
         )}
       </div>
 
-      <span className="block bg-slate-50 h-24 w-0.5"></span>
-      <div className="flex justify-between items-center">
+      <span className="block bg-slate-50 h-24 w-0.5 ml-5"></span>
+      <div className="flex justify-between items-center ml-5">
         <div className="flex flex-col items-center">
           <div className="text-6xl text-green-600">{timer}</div>
           <div className="text-2xl text-gray-200 ">Remaing Time</div>
         </div>
       </div>
 
-      <span className="block bg-slate-50 h-24 w-0.5"></span>
-      <div className="text-4xl  bg-gray-700 " > {formattedDate}</div>
+      <span className="block bg-slate-50 h-24 w-0.5 ml-5"></span>
+      <div className="text-5xl  ml-5" > {formattedDate}</div>
     </div>
   );
 };

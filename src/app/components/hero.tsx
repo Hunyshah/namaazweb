@@ -91,18 +91,17 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
     let i = 0;
 
     const intervalId = setInterval(() => {
-      console.log("Intervling running "+(++i));
+      // console.log("Intervling running "+(++i));
       
    
       jammattime?.map((item) => {
-        console.log("Time In = "+item.data().TimeIn)
         if (compareTimes(item.data().TimeIn, item.data().JamatTime)) {
           isCountDownStared = true;
           setActivePrayer(item.data());
 
         }
       });
-      console.log(`Active Prayer = ${activePrayer?.ID} AND isCountDown = ${isCountDownStared}`);
+      // console.log(`Active Prayer = ${activePrayer?.ID} AND isCountDown = ${isCountDownStared}`);
       const now: any = new Date();
       let activeJamatTime = activePrayer?.JamatTime;
       if (activeJamatTime && isCountDownStared) {
@@ -140,7 +139,7 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
           return (
             <div
               key={item.id}
-              className={`2ndParent flex flex-col items-center ${
+              className={`2ndParent flex flex-col items-center mr-1 ${
                 isHighlighted ? "scale-125" : ""
               }`}
             >
@@ -154,8 +153,8 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
                 
                 // <Image className='bg-transparent' src='/images/lightgs.png' alt='no pic' width={25} height={25} />
               ) : null} */}
-                  <div className="text-5xl mb-7"> {item.id}</div>
-                  <div className="text-5xl text-red-600">
+                  <div className="text-6xl mb-7"> {item.id}</div>
+                  <div className="text-7xl text-center text-red-600">
                     {item.data().JamatTime}
                   </div>
                   <div className="text-3xl"> JAMAT</div>
