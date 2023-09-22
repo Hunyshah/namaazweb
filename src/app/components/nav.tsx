@@ -43,6 +43,26 @@ const NavBar = ({ color, jammattime }: Props) => {
       clearInterval(intervalID);
     };
   }, []);
+  const isMidnight = () => {
+    const now = new Date();
+    return now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0;
+  };
+
+  // Function to refresh the page
+  const refreshPage = () => {
+    window.location.reload();
+  };
+  useEffect(() => {
+    const refreshInterval = setInterval(() => {
+      if (isMidnight()) {
+        refreshPage();
+      }
+    }, 60000); // Check every minute
+
+    return () => {
+      clearInterval(refreshInterval);
+    };
+  }, []);
   // const fixedTimes: any = jammattime;
 
   // function convertTo12HourFormat(date: any) {

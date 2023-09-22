@@ -64,7 +64,7 @@ function Page() {
 
   const [color, setcolor] = useState<string>("#00000");
 
-  const [slideImage, setSlideImages] = useState<string | undefined >();
+  const [slideImage, setSlideImages] = useState<undefined >();
   const { user }: any = useAuthContext();
   const router = useRouter();
   const currentDate = new Date();
@@ -143,9 +143,11 @@ function Page() {
   const toggleFullScreenCarousel = () => {
     setShowFullScreenCarousel(true); // Set the flag to show full-screen carousel
     const interval = setInterval(() => {
+      if(slideImage){
       if (slideImage?.length) {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % slideImage?.length);
       }
+    }
     }, 10000);
 
     // Clear the full-screen carousel after 10 seconds
@@ -192,7 +194,7 @@ function Page() {
               arrows={false}
               transitionDuration={5000}
             >
-              {slideImage?.map((item: any, index: any) => {
+              {slideImage&&slideImage?.map((item: any, index: any) => {
                 return (
                   <div className="w-full h-full bg-white text-white" key={index}>
                     <Image
