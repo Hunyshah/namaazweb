@@ -1,7 +1,11 @@
 'use client'
-import React from "react";
+import React, { useEffect } from "react";
 import signIn from "./firbase/auth/signIn"
 import { useRouter } from 'next/navigation'
+// import {onAuthStateChanged,getAuth} from 'firebase/auth'
+// import firebase_app from "./firbase/firebaseConfig";
+
+
 
 function Page() {
     const [email, setEmail] = React.useState('')
@@ -10,6 +14,10 @@ function Page() {
     const [loading,setloading] = React.useState(false)
     
     const router = useRouter()
+    useEffect(()=>{
+      console.log("this woi")
+      
+    },[])
 
     const handleForm = async (event:any) => {
         event.preventDefault()
@@ -27,6 +35,20 @@ function Page() {
           setloading(false)
         return router.push("/admin")}
     }
+   
+//     const auth = getAuth(firebase_app);
+// window.onload = function() {
+//   onAuthStateChanged(auth, function(user) {
+//     if (user) {
+//       console.log("user exist")
+//       router.push('/admin')
+//       // Do something if user is signed in
+//     } else {
+//       console.log("No user is signed in");
+//       // Do something if no user is signed in
+//     }
+//   });
+// };
     
 
 

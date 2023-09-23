@@ -55,8 +55,8 @@ const Herofooter = ({imageslider,alan,color}:any) => {
   }, [imageslider]);
   // bg-slate-950
   return (
-    <div style={{backgroundColor:color}} className={`main-parent flex justify-between  text-white pt-3  h-[53.5%]`} >
-      <div className="flex flex-col items-center ml-5  " style={{width:'40vw'}}>
+    <div style={{backgroundColor:color}} className={`main-parent flex justify-between  text-white pt-3  h-[50%]`} >
+      <div className="flex flex-col items-center ml-5  " style={{width:'100vw'}}>
         <div style={{ height:'68%' }} className={'border-2 border-gray-300 rounded-md p-4  w-[100%]  '}>
           <div className=" text-5xl font-bold text-yellow-600"> Note !</div>
           <div className=" mt-10   p-2 m-2  indent-4 bg-black text-yellow-500">
@@ -67,11 +67,11 @@ const Herofooter = ({imageslider,alan,color}:any) => {
         </div>
       </div>
 
-      <div style={{width:'12vw',height:'auto',marginTop:'4%'}}>
+      {/* <div style={{width:'12vw',height:'auto',marginTop:'4%'}}>
         <Image src={qrcode} alt="qrCode" height={350} width={250}/>
-      </div>
+      </div> */}
 
-      <div
+      {/* <div
         style={{
           marginBottom: 10,
         
@@ -103,7 +103,7 @@ const Herofooter = ({imageslider,alan,color}:any) => {
             );
           })}
         </Carousel>
-      </div>
+      </div> */}
 
       {/* <div className=' border-2 p-10 mr-1 border-white rounded-l-xl'>
     <div className='flex justify-between '>

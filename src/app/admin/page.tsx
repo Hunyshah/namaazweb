@@ -64,7 +64,7 @@ function Page() {
 
   const [color, setcolor] = useState<string>("#00000");
 
-  const [slideImage, setSlideImages] = useState<undefined >();
+  const [slideImage, setSlideImages] = useState<any>();
   const { user }: any = useAuthContext();
   const router = useRouter();
   const currentDate = new Date();
@@ -144,6 +144,7 @@ function Page() {
     setShowFullScreenCarousel(true); // Set the flag to show full-screen carousel
     const interval = setInterval(() => {
       if(slideImage){
+        console.log(slideImage.length)
       if (slideImage?.length) {
         setCurrentIndex((prevIndex) => (prevIndex + 1) % slideImage?.length);
       }
@@ -156,14 +157,14 @@ function Page() {
       clearInterval(interval); // Clear the interval
 
       // Recursively toggle the full-screen carousel
-      setTimeout(toggleFullScreenCarousel, 60000);
+      setTimeout(toggleFullScreenCarousel, 30000);
 
-    }, 10000);
+    }, 30000); /// this is time to show full caresol 
   };
 
   useEffect(() => {
-    const startTimer = setTimeout(toggleFullScreenCarousel, 60000);
-
+    const startTimer = setTimeout(toggleFullScreenCarousel, 1000000);
+   console.log("this use effect working in recursion useeffect")
     return () => clearTimeout(startTimer);
   }, [slideImage]);
 
@@ -184,22 +185,23 @@ function Page() {
           <Herofooter color={color} imageslider={slideImage} alan={alaan} />
         )}
         {showFullScreenCarousel && (
-          <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' ,zIndex:100}}>
+          <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}>
             <Carousel
               // Add your full-screen carousel props here
               responsive={responsive}
               autoPlay={true}
-              autoPlaySpeed={5000}
+              autoPlaySpeed={3000}
               rewind={true}
               arrows={false}
-              transitionDuration={5000}
+              transitionDuration={3000}
             >
-              {slideImage&&slideImage?.map((item: any, index: any) => {
+              {slideImage && slideImage?.map((item: any, index: any) => {
                 return (
                   <div className="w-full h-full bg-white text-white" key={index}>
+                    
                     <Image
-                     width={500}
-                     height={500}
+                     width={800}
+                     height={700}
                       alt="slides"
                       src={item?.data()?.IMAGE_URL}
                     />
