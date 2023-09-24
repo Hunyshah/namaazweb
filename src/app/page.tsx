@@ -3,7 +3,11 @@ import React, { useEffect } from "react";
 import signIn from "./firbase/auth/signIn"
 import { useRouter } from 'next/navigation'
 // import {onAuthStateChanged,getAuth} from 'firebase/auth'
-// import firebase_app from "./firbase/firebaseConfig";
+ import firebase_app from "./firbase/firebaseConfig";
+
+import { signInWithEmailAndPassword, getAuth, onAuthStateChanged } from "firebase/auth";
+
+const auth = getAuth(firebase_app);
 
 
 
@@ -14,10 +18,19 @@ function Page() {
     const [loading,setloading] = React.useState(false)
     
     const router = useRouter()
-    useEffect(()=>{
-      console.log("this woi")
-      
-    },[])
+    useEffect(() => {
+      const unsubscribe = onAuthStateChanged(auth, function(user) {
+        if (user) {
+          router.push('/admin')
+          // Do something if user is signed in
+        } else {
+          console.log("No user is signed in");
+          // Do something if no user is signed in
+        }
+      });
+  
+      return () => unsubscribe(); // Clean up the subscription when component unmounts
+    }, []); //
 
     const handleForm = async (event:any) => {
         event.preventDefault()
