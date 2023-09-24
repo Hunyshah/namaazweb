@@ -19,14 +19,14 @@ export default async function signIn(phone, password) {
 }
 
 // Check if user is signed in on page load
-window.onload = function() {
-  onAuthStateChanged(auth, function(user) {
-    if (user) {
-      console.log("User is signed in");
-      // Do something if user is signed in
-    } else {
-      console.log("No user is signed in");
-      // Do something if no user is signed in
-    }
-  });
-};
+// window.onload = function() {
+//   onAuthStateChanged(auth, function(user) {
+//     if (user) {
+//       console.log("User is signed in");
+//       // Do something if user is signed in
+//     } else {
+//       console.log("No user is signed in");
+//       // Do something if no user is signed in
+//     }
+//   });
+// };
