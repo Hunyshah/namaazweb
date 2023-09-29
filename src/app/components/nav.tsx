@@ -45,7 +45,7 @@ const NavBar = ({ color, jammattime }: Props) => {
   }, []);
   const isMidnight = () => {
     const now = new Date();
-    return now.getHours() === 0 && now.getMinutes() === 0 && now.getSeconds() === 0;
+    return now.getHours() === 0 && now.getMinutes() === 0;
   };
 
   // Function to refresh the page
@@ -214,7 +214,7 @@ const NavBar = ({ color, jammattime }: Props) => {
     const day = date.getDate();
     const year = date.getFullYear();
 
-    return `${dayName},${monthName},${day},${year}`;
+    return `${dayName}-${monthName}-${day}-${year}`;
   }
 
   // Example usage:
@@ -223,42 +223,133 @@ const NavBar = ({ color, jammattime }: Props) => {
 
   // bg-slate-900
   return (
+    <div style={{display:'flex',flexDirection:'column'}}>
     <div
-      style={{ backgroundColor: color }}
-      className={` flex flex-row  items-center   text-white border-b-2 pb-4  ${roboto.className}`}
+      style={{
+        width: "100%",
+        height: "30vh",
+        flexDirection: "row",
+        display: "flex",
+        background: color,
+      }}
     >
-      <div className="flex  items-center  ml-5">
-        <div className={` text-5xl text-gray-200  ${arabic.className}`}>
+       <div
+        style={{
+   
+          display: "flex",
+          flexDirection:'column',
+          flex: "1", 
+          marginTop:'1rem',
+          alignItems:'center'
+
+        }}
+      >
+        <p style={{ fontSize: "2.7vw"}}>
           {datehijri}
+        </p>
+        <div style={{width:"100%",height:'2px',background:'white'}}/>
+
+
+        
+      </div>
+      {/*divider**/}
+      <div style={{background:'white',width:'2px',height:'100%'}}/>
+      <div
+        style={{
+          display: "flex",
+          flex: "1",
+  
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <p
+          className={`${digitFonts.className} font-sans`}
+          style={{
+            fontSize: "6vw",
+            textAlign: "center",
+          }}
+        >
+          {currentTime}
+        </p>
+
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <p style={{fontSize:'2.2vw'}}>Remaning Time</p>
+          <p style={{fontSize:'3vw'}}>{timer}</p>
         </div>
-      </div>
-      <div className=" bg-slate-50 h-24 w-0.5 ml-5"></div>
-      {/* <div className='flex justify-between items-center '> */}
-      {/* <div className="flex flex-col items-center ">
-        <h3 className="text-6xl text-red-600"></h3>
-        <h5 className={`text-[190%] text-gray-200 `}>Until</h5>
-      </div> */}
-      {/* </div> */}
+        {/*divider**/}
+        <div style={{width:'100%',height:'2px',background:'white'}}/>
 
-      {/* <span className="block bg-slate-50 h-24 w-0.5"></span> */}
-      <div className="text-[650%] font-mono  min-w-[320px] ml-5">
-        {currentTime && (
-          <p className={`${digitFonts.className} font-sans`}>{currentTime}</p>
-        )}
       </div>
+      {/*divider**/}
+      <div style={{background:'white',width:'2px',height:'100%'}}/>
 
-      <span className="block bg-slate-50 h-24 w-0.5 ml-5"></span>
-      <div className="flex justify-between items-center ml-5">
-        <div className="flex flex-col items-center">
-          <div className="text-6xl text-green-600">{timer}</div>
-          <div className="text-2xl text-gray-200 ">Remaing Time</div>
-        </div>
+      <div
+        style={{
+   
+          display: "flex",
+          flexDirection:'column',
+          flex: "1", 
+          marginTop:'1rem',
+          alignItems:'center'
+
+        }}
+      >
+        <p style={{ fontSize: "3.5vw"}}>
+          {formattedDate}
+        </p>
+        <div style={{width:"100%",height:'2px',background:'white'}}/>
+
+
+        
       </div>
+    </div>
 
-      <span className="block bg-slate-50 h-24 w-0.5 ml-5"></span>
-      <div className="text-5xl  ml-5" > {formattedDate}</div>
     </div>
   );
+  // return (
+  //   <div
+  //     style={{ backgroundColor: color }}
+  //     className={` flex flex-row  items-center   text-white border-b-2 pb-4  ${roboto.className}`}
+  //   >
+  //     <div className="flex  items-center  ml-5">
+  //       <div className={` text-5xl text-gray-200  ${arabic.className}`}>
+  //         {datehijri}
+  //       </div>
+  //     </div>
+  //     <div className=" bg-slate-50 h-24 w-0.5 ml-5"></div>
+  //     {/* <div className='flex justify-between items-center '> */}
+  //     {/* <div className="flex flex-col items-center ">
+  //       <h3 className="text-6xl text-red-600"></h3>
+  //       <h5 className={`text-[190%] text-gray-200 `}>Until</h5>
+  //     </div> */}
+  //     {/* </div> */}
+
+  //     {/* <span className="block bg-slate-50 h-24 w-0.5"></span> */}
+  //     <div className="text-[400%] font-mono  min-w-[320px] ml-5">
+  //       {currentTime && (
+  //         <p className={`${digitFonts.className} font-sans`}>{currentTime}</p>
+  //       )}
+  //     </div>
+
+  //     <span className="block bg-slate-50 h-24 w-0.5 ml-5"></span>
+  //     <div className="flex justify-between items-center ml-5">
+  //       <div className="flex flex-col items-center">
+  //         <div className="text-6xl text-green-600">{timer}</div>
+  //         <div className="text-2xl text-gray-200 ">Remaing Time</div>
+  //       </div>
+  //     </div>
+
+  //     <span className="block bg-slate-50 h-24 w-0.5 ml-5"></span>
+  //     <div className="text-5xl  ml-5" > {formattedDate}</div>
+  //   </div>
+  // );
 };
 
 export default NavBar;

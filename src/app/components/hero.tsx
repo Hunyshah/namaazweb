@@ -138,6 +138,7 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
           const isHighlighted = item.data().ID === activePrayer?.ID;
           return (
             <div
+              style={{width:'16vw'}}
               key={item.id}
               className={`2ndParent flex flex-col items-center mr-1 ${
                 isHighlighted ? "scale-125" : ""

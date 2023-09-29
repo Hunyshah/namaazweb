@@ -63,6 +63,7 @@ function Page() {
   const [alaan, setalaan] = useState<string>("");
 
   const [color, setcolor] = useState<string>("#00000");
+  const [fontColor,setFontColor] = useState<string>('#000000')
 
   const [slideImage, setSlideImages] = useState<any>();
   const { user }: any = useAuthContext();
@@ -77,6 +78,8 @@ function Page() {
         console.log("Mosque document cahnge");
         let color = doc.get("color");
         let alan = doc.get("Announcement");
+        let fontColor = doc.get("FontColor");
+        setFontColor(fontColor)
         setcolor(color);
         setalaan(alan);
       });
@@ -117,103 +120,66 @@ function Page() {
     getJammatdata();
 
     if (user == null) router.push("/");
-  }, [user, color]);
+  }, [user, color,fontColor]);
 
+  // Full Screen carasoel Logic Added Here <><><><><><><>
 
-// Full Screen carasoel Logic Added Here <><><><><><><>
+  // useEffect(() => {
+  //   const startTimer = setTimeout(() => {
+  //     setShowFullScreenCarousel(true);
+  //     const interval = setInterval(() => {
+  //       if (slideImage?.length){
+  //         setCurrentIndex((prevIndex) => (prevIndex + 1) % slideImage?.length);
+  //       }
 
-// useEffect(() => {
-//   const startTimer = setTimeout(() => {
-//     setShowFullScreenCarousel(true);
-//     const interval = setInterval(() => {
-//       if (slideImage?.length){
-//         setCurrentIndex((prevIndex) => (prevIndex + 1) % slideImage?.length);
-//       }
-      
-//     }, 10000);
+  //     }, 10000);
 
+  //     return () => clearInterval(interval);
+  //   }, 60000);
 
-//     return () => clearInterval(interval);
-//   }, 60000);
-
-//   return () => clearTimeout(startTimer);
-// }, [slideImage]);
+  //   return () => clearTimeout(startTimer);
+  // }, [slideImage]);
 
   // Full Screen Carousel Logic (updated)
-  const toggleFullScreenCarousel = () => {
-    setShowFullScreenCarousel(true); // Set the flag to show full-screen carousel
-    const interval = setInterval(() => {
-      if(slideImage){
-        console.log(slideImage.length)
-      if (slideImage?.length) {
-        setCurrentIndex((prevIndex) => (prevIndex + 1) % slideImage?.length);
-      }
-    }
-    }, 10000);
+  // const toggleFullScreenCarousel = () => {
+  //   setShowFullScreenCarousel(true); // Set the flag to show full-screen carousel
+  //   const interval = setInterval(() => {
+  //     if(slideImage){
+  //       console.log(slideImage.length)
+  //     if (slideImage?.length) {
+  //       setCurrentIndex((prevIndex) => (prevIndex + 1) % slideImage?.length);
+  //     }
+  //   }
+  //   }, 10000);
 
-    // Clear the full-screen carousel after 10 seconds
-    setTimeout(() => {
-      setShowFullScreenCarousel(false);
-      clearInterval(interval); // Clear the interval
+  //   // Clear the full-screen carousel after 10 seconds
+  //   setTimeout(() => {
+  //     setShowFullScreenCarousel(false);
+  //     clearInterval(interval); // Clear the interval
 
-      // Recursively toggle the full-screen carousel
-      setTimeout(toggleFullScreenCarousel, 30000);
+  //     // Recursively toggle the full-screen carousel
+  //     setTimeout(toggleFullScreenCarousel, 30000);
 
-    }, 30000); /// this is time to show full caresol 
-  };
+  //   }, 30000); /// this is time to show full caresol
+  // };
 
-  useEffect(() => {
-    const startTimer = setTimeout(toggleFullScreenCarousel, 1000000);
-   console.log("this use effect working in recursion useeffect")
-    return () => clearTimeout(startTimer);
-  }, [slideImage]);
-
-
+  // useEffect(() => {
+  //   const startTimer = setTimeout(toggleFullScreenCarousel, 1000000);
+  //  console.log("this use effect working in recursion useeffect")
+  //   return () => clearTimeout(startTimer);
+  // }, [slideImage]);
 
   const jammatExactTime = jammatTime?.map((item: any) => {
     return item.data().JamatTime;
   });
   // console.log(jammatExactTime)
-  return   (
+  return (
     <>
-      <div className={`${roboto.className} h-screen `}>
-        <div>
-          <NavBar color={color} jammattime={jammatExactTime} />
-          <HeroSection color={color} jammattime={jammatTime} />
-        </div>
-        {slideImage && !showFullScreenCarousel && (
-          <Herofooter color={color} imageslider={slideImage} alan={alaan} />
-        )}
-        {showFullScreenCarousel && (
-          <div style={{ position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }}>
-            <Carousel
-              // Add your full-screen carousel props here
-              responsive={responsive}
-              autoPlay={true}
-              autoPlaySpeed={3000}
-              rewind={true}
-              arrows={false}
-              transitionDuration={3000}
-            >
-              {slideImage && slideImage?.map((item: any, index: any) => {
-                return (
-                  <div className="w-full h-full bg-white text-white" key={index}>
-                    
-                    <Image
-                     width={800}
-                     height={700}
-                      alt="slides"
-                      src={item?.data()?.IMAGE_URL}
-                    />
-                    {/* <h2 className="text-black">
-                      hloooo
-                    </h2> */}
-                  </div>
-                );
-              })}
-            </Carousel>
-          </div>
-        )}
+      <div style={{ width: "100vw",height:'100vh',color:fontColor,background:color }}>
+        <NavBar color={color} jammattime={jammatExactTime} />
+        <HeroSection color={color} jammattime={jammatTime} />
+
+        <Herofooter color={color} imageslider={slideImage} alan={alaan} />
       </div>
     </>
   );
