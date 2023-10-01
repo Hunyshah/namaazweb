@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { useAppDispatch } from "../redux/features/hooks";
 import { timerChange } from "../redux/features/timer";
+import { type } from "os";
 // import {} from '@/app/components'
 type Props = {
   jammattime: any[];
@@ -11,9 +12,32 @@ type Props = {
 const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
   const [light, setLight] = useState(false);
   const [activePrayer, setActivePrayer] = React.useState<any>(undefined);
+  const [jummaDay,setJummaDay] = useState<any>()
   const dispatch = useAppDispatch();
   // Function to convert time in '12:28 pm' format to 24-hour format
   //function to convert time in '12:28 pm' format to 24-hour format
+
+  const jammatdayfriday = jammattime?.map((item)=>{
+   return item
+    })
+    
+    
+    const currentDate = new Date();
+
+  const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const dayOfWeek = daysOfWeek[currentDate.getDay()];
+
+console.log(dayOfWeek); // This will print the current day of the week
+// console.log(jammatdayfriday[4],dayOfWeek)
+let finalResultFriday = []
+if (dayOfWeek === 'Friday'){
+const filterdday = jammatdayfriday?.filter(item => item.id !== 'الظهر')  
+finalResultFriday = filterdday
+}
+
+ else {
+         finalResultFriday = jammatdayfriday?.filter(item => item.id !== 'الجمعة' )
+ }
   function convertTo24Hour(time12h: string) {
     const [time, period] = time12h.split(" ");
     const [hour, minute] = time.split(":").map(Number);
@@ -36,6 +60,10 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
       hour: currentDate.getHours(),
       minute: currentDate.getMinutes(),
     };
+  
+
+
+    
 
     const { hour: hour1, minute: minute1 } = convertTo24Hour(time1);
     const { hour: hour2, minute: minute2 } = convertTo24Hour(time2);
@@ -127,14 +155,15 @@ const HeroSection: React.FC<Props> = ({ jammattime, color }) => {
 
     return () => clearInterval(intervalId);
   }, [jammattime,activePrayer]);
-
+console.log(finalResultFriday)
+console.log(jammattime)
   return (
     <div
       style={{ backgroundColor: color }}
       className={` text-white pt-14 pb-5`}
     >
       <div className="1stparent flex justify-evenly items-center">
-        {jammattime?.map((item: any) => {
+        {finalResultFriday?.map((item: any) => {
           const isHighlighted = item.data().ID === activePrayer?.ID;
           return (
             <div

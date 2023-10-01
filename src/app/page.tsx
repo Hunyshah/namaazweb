@@ -20,6 +20,7 @@ function Page() {
     const router = useRouter()
     useEffect(() => {
       const unsubscribe = onAuthStateChanged(auth, function(user) {
+        console.log(user)
         if (user) {
           router.push('/admin')
           // Do something if user is signed in
